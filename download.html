@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crackzones Download</title>
+  <meta name="description" content="Download Crackzones for Android or install on iPhone home screen.">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --text: #e6edf3;
+      --muted: #9da7b3;
+      --accent: #00c853;
+      --link: #58a6ff;
+      --border: #30363d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #1f2937, var(--bg));
+      color: var(--text);
+      padding: 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 560px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    p { color: var(--muted); line-height: 1.5; }
+    .btn {
+      display: inline-block;
+      margin-top: 14px;
+      text-decoration: none;
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #03130a;
+    }
+    .btn-secondary {
+      background: #21262d;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .steps {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    .steps li { margin: 7px 0; }
+    .hidden { display: none; }
+    .small {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    a { color: var(--link); }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Get Crackzones</h1>
+    <p id="status">Detecting your device...</p>
+
+    <section id="android-block" class="hidden">
+      <p>Android detected. Download and install the latest APK.</p>
+      <a
+        class="btn btn-primary"
+        href="https://github.com/ganexhshah/carckzone/releases/download/crackzone/crackzones-release.apk"
+        download
+      >
+        Download APK
+      </a>
+    </section>
+
+    <section id="ios-block" class="hidden">
+      <p>iPhone/iPad detected. Install Crackzones to your home screen:</p>
+      <ol class="steps">
+        <li>Tap the <strong>Share</strong> icon in Safari.</li>
+        <li>Tap <strong>Add to Home Screen</strong>.</li>
+        <li>Tap <strong>Add</strong>.</li>
+      </ol>
+      <a class="btn btn-secondary" href="https://crackzones.xyz">Open crackzones.xyz</a>
+    </section>
+
+    <section id="other-block" class="hidden">
+      <p>
+        Open this page on an Android phone to download the APK, or on iPhone to
+        add Crackzones to the home screen.
+      </p>
+      <a class="btn btn-secondary" href="https://crackzones.xyz">Open crackzones.xyz</a>
+    </section>
+
+    <p class="small">
+      Note: iOS does not allow websites to add themselves to home screen automatically.
+    </p>
+  </main>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || "";
+      var isAndroid = /Android/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      var inStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+
+      var status = document.getElementById("status");
+      var androidBlock = document.getElementById("android-block");
+      var iosBlock = document.getElementById("ios-block");
+      var otherBlock = document.getElementById("other-block");
+
+      if (isAndroid) {
+        status.textContent = "Android device detected.";
+        androidBlock.classList.remove("hidden");
+        return;
+      }
+
+      if (isIOS) {
+        if (inStandalone) {
+          status.textContent = "Crackzones is already on your home screen.";
+          otherBlock.classList.remove("hidden");
+          return;
+        }
+        status.textContent = "iOS device detected.";
+        iosBlock.classList.remove("hidden");
+        return;
+      }
+
+      status.textContent = "Desktop detected. Redirecting...";
+      window.location.replace("https://crackzones.xyz");
+    })();
+  </script>
+</body>
+</html>
